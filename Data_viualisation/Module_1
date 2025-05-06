@@ -1,1 +1,34 @@
+# Data Visualization with Python Course  
+
+## Introduction  
+This course is ideal for professionals with Python programming knowledge who aspire to become data analysts. In this course, you will learn how to create meaningful, effective, and aesthetically pleasing data visuals using **Matplotlib**. You will also explore advanced visualization tools and web-based dashboarding tools.  
+
+## Course Modules  
+
+### **Module 1: Basics of Data Visualization**  
+- Importance of data visualization and best practices  
+- History and architecture of Matplotlib  
+- Analyzing the Canadian immigration dataset  
+- Generating line plots using DataFrame and Matplotlib  
+
+### **Module 2: Different Plot Types**  
+- Creating area plots, histograms, bar charts, pie charts, box plots, scatter plots  
+- Using Matplotlib to develop visualization tools  
+
+### **Module 3: Advanced Visualization**  
+- Waffle charts and word clouds  
+- Creating regression plots with Seaborn  
+- Visualizing geospatial data using Folium  
+- Developing choropleth maps  
+
+### **Module 4: Dashboarding & Interactive Tools**  
+- Benefits of dashboards and available web-based dashboarding tools  
+- Using Plotly to create interactive charts  
+- Building UI components with Dash  
+- Understanding callback functions and connecting core components  
+
+### **Module 5: Final Lab Assignment**  
+- Analyzing the performance of domestic flights operated by US airlines  
+- Improving customer reliability through data-driven reporting  
+
 
