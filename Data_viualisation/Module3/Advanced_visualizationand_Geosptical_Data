@@ -1,1 +1,61 @@
+##HAnds-on Lab: Creating Maps and Visualizing Geospatial DAta
 
+You can customize this default definition of the world map by specifying the centre of your map, and the initial zoom level. All locations on a map are defined by their respective Latitude and Longitude values. So you can create a map and pass in a center of Latitude and Longitude values of [0, 0]. For a defined center, you can also define the initial zoom level into that location when the map is rendered. The higher the zoom level the more the map is zoomed into the center. Let's create a map centered around Canada and play with the zoom level to see how it affects the rendered map. sumerise kardo
+A world map can be customized by setting a center point using Latitude and Longitude values, such as [0, 0]. The initial zoom level determines how closely the map focuses on that center—higher zoom levels result in a more detailed view. For example, centering a map around Canada and adjusting the zoom level lets us see how different perspectives of the country are rendered.
+
+hinglish me
+Map ko customize karne ke liye uska center Latitude aur Longitude values se define kar sakte hain, jaise [0, 0]. Zoom level se decide hota hai ki map kitna close focus karega—jitna bada zoom level hoga, utni detail milegi. Agar Canada ko center banayein aur zoom level adjust karein toh dekh sakte hain ki country ka view kaise change hota hai.
+
+Isn't this really cool? Now you are able to know what crime category occurred at each marker. If you find the map to be so congested will all these markers, there are two remedies to this problem. The simpler solution is to remove these location markers and just add the text to the circle markers themselves as follows:
+Bilkul cool hai! Ab aap har marker pe kaunsa crime category hua hai, ye jaan sakte hain.
+
+Agar map zyada congested lag raha hai, toh do solutions hain. Sabse simple tareeka ye hai ki location markers hata kar sirf circle markers par text add kar diya jaye. Isse map clutter-free dikhega aur information bhi clearly visible hogi.
+
+The other proper remedy is to group the markers into different clusters. Each cluster is then represented by the number of crimes in each neighborhood. These clusters can be thought of as pockets of San Francisco which you can then analyze separately. To implement this, we start off by instantiating a MarkerCluster object and adding all the data points in the dataframe to this object.
+Ek aur behtar solution hai markers ko different clusters me group karna. Har cluster ek neighborhood ke crimes ka count represent karega. In clusters ko San Francisco ke alag-alag pockets ki tarah samajh sakte hain, jinhe alag se analyze kiya ja sakta hai.
+
+Isko implement karne ke liye, pehle ek MarkerCluster object instantiate karna hoga aur saare dataframe ke data points is object me add karne honge. Is tarike se map zyada organized aur insightful lagega!
+
+Notice how when you zoom out all the way, all markers are grouped into one cluster, the global cluster, of 100 markers or crimes, which is the total number of crimes in our dataframe. Once you start zooming in, the global cluster will start breaking up into smaller clusters. Zooming in all the way will result in individual markers.
+Jab aap poori tarah zoom out karte hain, toh saare markers ek global cluster me group ho jate hain, jo total 100 markers ya crimes ka representation hai—jitne crimes hamare dataframe me hain. Jaise hi aap zoom in karna shuru karenge, ye global cluster chhoti-chhoti clusters me tootne lagega. Aur jab bilkul zoom in karenge, toh har marker individually dikhne lagega.
+
+Is technique se map zyada clear aur informative banta hai, kyunki zoom level ke hisaab se data dynamically adjust hota hai! 🚀
+
+A Choropleth map is a thematic map in which areas are shaded or patterned in proportion to the measurement of the statistical variable being displayed on the map, such as population density or per-capita income. The choropleth map provides an easy way to visualize how a measurement varies across a geographic area, or it shows the level of variability within a region. Below is a Choropleth map of the US depicting the population by square mile per state.
+Choropleth maps are a fantastic way to visualize geographic data! By shading or patterning areas based on statistical values like population density or per-capita income, they make complex data easier to interpret at a glance. In your example, the Choropleth map of the U.S. represents population distribution per square mile, helping to highlight the differences in density across states.
+
+These maps are widely used in demographics, economics, and public policy to analyze patterns and trends effectively. Have you explored making one yourself? 🚀
+
+hinglish me batao
+Choropleth map ek thematic map hota hai jisme areas ko shade ya pattern kiya jata hai kisi statistical variable ke hisaab se, jaise population density ya per-capita income. Yeh map ek easy visualization provide karta hai ki kisi geographic area me ek particular measurement kaise vary karta hai ya ek region ke andar variability ka level kya hai.
+
+Aapke example me, Choropleth map of the U.S. states ka population per square mile depict karta hai. Isse hume easily samajh aata hai ki kaunse states me population zyada concentrated hai aur kaunse me kam.
+
+Yeh maps demographics, economics, aur public policy me kaafi useful hote hain patterns aur trends analyze karne ke liye! Kya aap apna khud ka Choropleth map banaane ka soch rahe hain? 🚀
+
+In order to create a Choropleth map, we need a GeoJSON file that defines the areas/boundaries of the state, county, or country that we are interested in. In our case, since we are endeavoring to create a world map, we want a GeoJSON that defines the boundaries of all world countries. For your convenience, we will be providing you with this file, so let's go ahead and download it. Let's name it world_countries.json. hinglish me samjhao
+Choropleth map banane ke liye hume ek GeoJSON file chahiye jo kisi state, county, ya country ke areas/boundaries define kare.
+
+Hamare case me, kyunki hum world map create kar rahe hain, hume ek GeoJSON chahiye jo duniya ke saare countries ki boundaries specify kare.
+
+Aapki convenience ke liye, hum ye file provide karenge. Chaliye isko download karte hain aur iska naam rakhte hain world_countries.json! 🌍✨
+
+And now to create a Choropleth map, we will use the choropleth method with the following main parameters: geo_data, which is the GeoJSON file. data, which is the dataframe containing the data. columns, which represents the columns in the dataframe that will be used to create the Choropleth map. key_on, which is the key or variable in the GeoJSON file that contains the name of the variable of interest. To determine that, you will need to open the GeoJSON file using any text editor and note the name of the key or variable that contains the name of the countries, since the countries are our variable of interest. In this case, name is the key in the GeoJSON file that contains the name of the countries. Note that this key is case_sensitive, so you need to pass exactly as it exists in the GeoJSON file.
+Choropleth map banane ke liye choropleth method ka use karenge, jisme kuch main parameters honge:
+
+geo_data → Yeh GeoJSON file hogi jo boundaries define karegi.
+
+data → Yeh dataframe hoga jo hamara statistical data contain karega.
+
+columns → Yeh dataframe ke columns honge jo Choropleth map ke liye use kiye jayenge.
+
+key_on → Yeh GeoJSON file ka key hoga jo variable of interest ko identify karega. Isko determine karne ke liye GeoJSON file ko kisi text editor me open karna hoga aur check karna hoga ki countries ka naam kis key me store kiya gaya hai. Hamare case me, name key countries ke naam contain karti hai.
+
+Dhyan rakhein: Yeh key case-sensitive hoti hai, toh aapko exactly waise hi pass karna hoga jaise GeoJSON file me likha hai, tabhi map sahi se render hoga! 🌍✨
+
+As per our Choropleth map legend, the darker the color of a country and the closer the color to red, the higher the number of immigrants from that country. Accordingly, the highest immigration over the course of 33 years (from 1980 to 2013) was from China, India, and the Philippines, followed by Poland, Pakistan, and interestingly, the US. Feel free to play around with the data and perhaps create Choropleth maps for individuals years, or perhaps decades, and see how they compare with the entire period from 1980 to 2013. hinglish me smjhao
+Hamare Choropleth map legend ke hisaab se, kisi country ka color jitna dark hoga aur red ke jitna close hoga, utne zyada immigrants us country se aaye hain.
+
+1980 se 2013 tak ke 33 saalon me sabse zyada immigration China, India aur Philippines se hua. Uske baad Poland, Pakistan aur surprisingly, US se bhi kaafi migration hua.
+
+Aap data ke saath experiment kar sakte hain! Alag-alag years ya decades ke Choropleth maps bana kar dekh sakte hain ki time ke saath immigration patterns kaise change hue. Isse insights aur comparisons nikalne me madad milegi! 🌍✨
